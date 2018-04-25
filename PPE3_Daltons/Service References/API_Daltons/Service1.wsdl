@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service1" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:56460/Service1.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:56460/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:56460/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/API_Daltons" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService1_AddCompte_Rendu_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddCompte_Rendu" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddCompte_Rendu_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddCompte_RenduResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddIntervention_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddIntervention" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddIntervention_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddInterventionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddSociete_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddSociete" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddSociete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddSocieteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddTechnicien_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddTechnicien" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddTechnicien_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddTechnicienResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteCompte_Rendu_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCompte_Rendu" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteCompte_Rendu_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCompte_RenduResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteIntervention_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteIntervention" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteIntervention_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteInterventionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteMateriel_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMateriel" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteMateriel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMaterielResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteSociete_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSociete" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteSociete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSocieteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteTechnicien_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTechnicien" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteTechnicien_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTechnicienResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SearchCompte_rendu_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchCompte_rendu" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SearchCompte_rendu_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchCompte_renduResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SearchIntervention_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchIntervention" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SearchIntervention_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchInterventionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SearchMateriel_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchMateriel" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SearchMateriel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchMaterielResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SearchSociete_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchSociete" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SearchSociete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchSocieteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SearchTechnicien_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchTechnicien" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SearchTechnicien_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchTechnicienResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UPDSociete_InputMessage">
+    <wsdl:part name="parameters" element="tns:UPDSociete" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UPDSociete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UPDSocieteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UPDCompte_rendu_InputMessage">
+    <wsdl:part name="parameters" element="tns:UPDCompte_rendu" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UPDCompte_rendu_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UPDCompte_renduResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UPDTechnicien_InputMessage">
+    <wsdl:part name="parameters" element="tns:UPDTechnicien" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UPDTechnicien_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UPDTechnicienResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UPDIntervention_InputMessage">
+    <wsdl:part name="parameters" element="tns:UPDIntervention" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UPDIntervention_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UPDInterventionResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IService1">
+    <wsdl:operation name="AddCompte_Rendu">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddCompte_Rendu" message="tns:IService1_AddCompte_Rendu_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddCompte_RenduResponse" message="tns:IService1_AddCompte_Rendu_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddIntervention">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddIntervention" message="tns:IService1_AddIntervention_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddInterventionResponse" message="tns:IService1_AddIntervention_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddSociete">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddSociete" message="tns:IService1_AddSociete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddSocieteResponse" message="tns:IService1_AddSociete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddTechnicien">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddTechnicien" message="tns:IService1_AddTechnicien_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddTechnicienResponse" message="tns:IService1_AddTechnicien_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCompte_Rendu">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteCompte_Rendu" message="tns:IService1_DeleteCompte_Rendu_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteCompte_RenduResponse" message="tns:IService1_DeleteCompte_Rendu_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteIntervention">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteIntervention" message="tns:IService1_DeleteIntervention_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteInterventionResponse" message="tns:IService1_DeleteIntervention_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMateriel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteMateriel" message="tns:IService1_DeleteMateriel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteMaterielResponse" message="tns:IService1_DeleteMateriel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSociete">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteSociete" message="tns:IService1_DeleteSociete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteSocieteResponse" message="tns:IService1_DeleteSociete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTechnicien">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteTechnicien" message="tns:IService1_DeleteTechnicien_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteTechnicienResponse" message="tns:IService1_DeleteTechnicien_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchCompte_rendu">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SearchCompte_rendu" message="tns:IService1_SearchCompte_rendu_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SearchCompte_renduResponse" message="tns:IService1_SearchCompte_rendu_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchIntervention">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SearchIntervention" message="tns:IService1_SearchIntervention_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SearchInterventionResponse" message="tns:IService1_SearchIntervention_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchMateriel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SearchMateriel" message="tns:IService1_SearchMateriel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SearchMaterielResponse" message="tns:IService1_SearchMateriel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchSociete">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SearchSociete" message="tns:IService1_SearchSociete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SearchSocieteResponse" message="tns:IService1_SearchSociete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchTechnicien">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SearchTechnicien" message="tns:IService1_SearchTechnicien_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SearchTechnicienResponse" message="tns:IService1_SearchTechnicien_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UPDSociete">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UPDSociete" message="tns:IService1_UPDSociete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UPDSocieteResponse" message="tns:IService1_UPDSociete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UPDCompte_rendu">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UPDCompte_rendu" message="tns:IService1_UPDCompte_rendu_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UPDCompte_renduResponse" message="tns:IService1_UPDCompte_rendu_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UPDTechnicien">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UPDTechnicien" message="tns:IService1_UPDTechnicien_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UPDTechnicienResponse" message="tns:IService1_UPDTechnicien_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UPDIntervention">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UPDIntervention" message="tns:IService1_UPDIntervention_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UPDInterventionResponse" message="tns:IService1_UPDIntervention_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddCompte_Rendu">
+      <soap:operation soapAction="http://tempuri.org/IService1/AddCompte_Rendu" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddIntervention">
+      <soap:operation soapAction="http://tempuri.org/IService1/AddIntervention" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSociete">
+      <soap:operation soapAction="http://tempuri.org/IService1/AddSociete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTechnicien">
+      <soap:operation soapAction="http://tempuri.org/IService1/AddTechnicien" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCompte_Rendu">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeleteCompte_Rendu" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteIntervention">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeleteIntervention" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMateriel">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeleteMateriel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSociete">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeleteSociete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTechnicien">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeleteTechnicien" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchCompte_rendu">
+      <soap:operation soapAction="http://tempuri.org/IService1/SearchCompte_rendu" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchIntervention">
+      <soap:operation soapAction="http://tempuri.org/IService1/SearchIntervention" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchMateriel">
+      <soap:operation soapAction="http://tempuri.org/IService1/SearchMateriel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchSociete">
+      <soap:operation soapAction="http://tempuri.org/IService1/SearchSociete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchTechnicien">
+      <soap:operation soapAction="http://tempuri.org/IService1/SearchTechnicien" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UPDSociete">
+      <soap:operation soapAction="http://tempuri.org/IService1/UPDSociete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UPDCompte_rendu">
+      <soap:operation soapAction="http://tempuri.org/IService1/UPDCompte_rendu" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UPDTechnicien">
+      <soap:operation soapAction="http://tempuri.org/IService1/UPDTechnicien" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UPDIntervention">
+      <soap:operation soapAction="http://tempuri.org/IService1/UPDIntervention" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="BasicHttpBinding_IService1" binding="tns:BasicHttpBinding_IService1">
+      <soap:address location="http://localhost:56460/Service1.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

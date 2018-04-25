@@ -1,0 +1,117 @@
+﻿<UserControl x:Class="PPE3_Daltons.Employees.Main_technicien.MainTechnicienView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sdk="http://schemas.microsoft.com/netfx/2009/xaml/presentation"
+             xmlns:CompteRenduTechnicien="clr-namespace:PPE3_Daltons.Employees.Compte_Rendu_Intervention"
+             xmlns:InterventionTechnicien="clr-namespace:PPE3_Daltons.Employees.Intervention_technicien"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+	<UserControl.Resources>
+		<DataTemplate DataType="{x:Type CompteRenduTechnicien:CompteRenduTechnicienViewModel}">
+			<CompteRenduTechnicien:CompteRenduTechnicienView />
+		</DataTemplate>
+		<DataTemplate DataType="{x:Type InterventionTechnicien:InterventionTechnicienViewModel}">
+			<InterventionTechnicien:InterventionTechnicienView />
+		</DataTemplate>
+	</UserControl.Resources>
+	<Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+			<RowDefinition Height="50" />
+			<RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+		<Grid Grid.Row="0" Grid.Column="0">
+			<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="*" />
+				</Grid.RowDefinitions>
+				<StackPanel Orientation="Horizontal"
+					HorizontalAlignment="Center"
+					Margin="0,5,0,5" Grid.Row="0">
+					<telerik:RadButton Width="80"
+							   Content="Supprimer"
+							   Margin="0,0,5,0"
+							   Command="telerik:RadVirtualGridCommands.Delete"
+							   CommandTarget="{Binding ElementName=RadGridView1}" />
+					<telerik:RadButton Width="80"
+							   Content="Ajouter"
+							   Margin="0,0,5,0"
+							   Command="telerik:RadVirtualGridCommands.BeginInsert"
+							   CommandTarget="{Binding ElementName=RadGridView1}" />
+					<telerik:RadButton Width="80"
+							   Content="Sauvegarder"
+							   Margin="0,0,5,0"
+							   Command="telerik:RadVirtualGridCommands.CommitEdit"
+							   CommandTarget="{Binding ElementName=RadGridView1}" />
+					<telerik:RadButton Width="80"
+							   Content="Annuler"
+							   Command="telerik:RadVirtualGridCommands.CancelEdit"
+							   CommandTarget="{Binding ElementName=RadGridView1}" />
+				</StackPanel>
+			<telerik:RadGridView x:Name="RadGridView1" GroupRenderMode="Flat"
+							 ItemsSource="{Binding DataTechnicien}"
+								 SelectedItem="{Binding SelectedItem}"
+							 SelectionMode="Extended"
+							 AutoGenerateColumns="False"
+							 Margin="0,5,0,0"
+							 Grid.Row="1"
+							 ShowGroupPanel="False"
+							 ActionOnLostFocus="None"
+							 CanUserFreezeColumns="False"
+							 RowIndicatorVisibility="Collapsed">
+<telerik:RadGridView.Columns>
+					<telerik:GridViewDataColumn  Header="Nom" DataMemberBinding="{Binding Nom}" IsFilterable="True" ShowFieldFilters="False"/>
+					<telerik:GridViewDataColumn  Header="Prenom" IsFilterable="True" DataMemberBinding="{Binding Prenom}" ShowFieldFilters="False"/>
+					<telerik:GridViewDataColumn  Header="Telephone" DataMemberBinding="{Binding Tel}"/>
+					<telerik:GridViewDataColumn  Header="Id_Materiel" DataMemberBinding="{Binding Id_Materiel}"/>
+				</telerik:RadGridView.Columns>
+			</telerik:RadGridView>
+
+		</Grid>
+        <Grid Grid.Row="0" Grid.Column="1" Margin="10,0,0,0">
+
+
+            <telerik:RadDataForm Header="Information Technicien" CommandButtonsVisibility="None" ItemsSource="{Binding SelectedItem}">
+                <telerik:RadDataForm.ReadOnlyTemplate>
+                    <DataTemplate>
+                        <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+							<telerik:DataFormDataField DataMemberBinding="{Binding Nom,Mode=TwoWay}"
+                                                                   Label="Nom : "/>
+							<telerik:DataFormDataField DataMemberBinding="{Binding Prenom,Mode=TwoWay}"
+                                                                   Label="Prenom : "/>
+							<telerik:DataFormDataField DataMemberBinding="{Binding Id_Materiel,Mode=TwoWay}"
+                                                                   Label="Materiel : "/>
+                        </StackPanel>
+                    </DataTemplate>
+                </telerik:RadDataForm.ReadOnlyTemplate>
+            </telerik:RadDataForm>
+
+
+        </Grid>
+
+		<Grid Grid.Row="1" Grid.ColumnSpan="2">
+			<telerik:RadMenu HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent">
+				<telerik:RadMenuItem Header="Compte Rendu" DataContext="{Binding CompteRenduIntervention}" HorizontalContentAlignment="Center" Margin="2"
+                                     Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                     CommandParameter="{Binding ''}"/>
+				<telerik:RadMenuItem Header="Intervention" DataContext="{Binding InterventionTechnicien}" HorizontalContentAlignment="Center" Margin="2"
+                                     Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                     CommandParameter="{Binding ''}"/>
+				
+			</telerik:RadMenu>
+		</Grid>
+		<Grid Margin="0,10,0,0" Grid.Row="2" Grid.ColumnSpan="2">
+			<ContentControl Content="{Binding CurrentPageViewModel}" />
+		</Grid>
+
+	</Grid>
+</UserControl>

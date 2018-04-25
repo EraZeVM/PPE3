@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPE3_Daltons", "PPE3_Daltons\PPE3_Daltons.csproj", "{7C705FF9-ABF5-403D-8974-E95BAB006DEE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C705FF9-ABF5-403D-8974-E95BAB006DEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C705FF9-ABF5-403D-8974-E95BAB006DEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C705FF9-ABF5-403D-8974-E95BAB006DEE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7C705FF9-ABF5-403D-8974-E95BAB006DEE}.Debug|x64.Build.0 = Debug|Any CPU
+		{7C705FF9-ABF5-403D-8974-E95BAB006DEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C705FF9-ABF5-403D-8974-E95BAB006DEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C705FF9-ABF5-403D-8974-E95BAB006DEE}.Release|x64.ActiveCfg = Release|Any CPU
+		{7C705FF9-ABF5-403D-8974-E95BAB006DEE}.Release|x64.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3DFF57D3-3ABF-4C3B-AB5F-429DBB6FDDD4}
+	EndGlobalSection
+EndGlobal

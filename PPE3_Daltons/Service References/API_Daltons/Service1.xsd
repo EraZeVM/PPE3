@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/API_Daltons" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/API_Daltons" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="Compte_rendu">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Intervention" nillable="true" type="tns:ArrayOfIntervention" />
+      <xs:element minOccurs="0" name="Societe" nillable="true" type="tns:Societe" />
+      <xs:element minOccurs="0" name="Societe1" nillable="true" type="tns:Societe" />
+      <xs:element minOccurs="0" name="Societe2" nillable="true" type="tns:Societe" />
+      <xs:element minOccurs="0" name="Technicien" nillable="true" type="tns:Technicien" />
+      <xs:element minOccurs="0" name="id_compte_rendu" type="xs:int" />
+      <xs:element minOccurs="0" name="id_societe" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="id_technicien" type="xs:int" />
+      <xs:element minOccurs="0" name="note" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Compte_rendu" nillable="true" type="tns:Compte_rendu" />
+  <xs:complexType name="ArrayOfIntervention">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Intervention" nillable="true" type="tns:Intervention" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfIntervention" nillable="true" type="tns:ArrayOfIntervention" />
+  <xs:complexType name="Intervention">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Compte_rendu" nillable="true" type="tns:Compte_rendu" />
+      <xs:element minOccurs="0" name="Etat_intervention" nillable="true" type="tns:Etat_intervention" />
+      <xs:element minOccurs="0" name="Motif_intervention" nillable="true" type="tns:Motif_intervention" />
+      <xs:element minOccurs="0" name="Societe" nillable="true" type="tns:Societe" />
+      <xs:element minOccurs="0" name="Technicien" nillable="true" type="tns:Technicien" />
+      <xs:element minOccurs="0" name="date_intervention" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="id_compte_rendu" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="id_etat" type="xs:int" />
+      <xs:element minOccurs="0" name="id_intervention" type="xs:int" />
+      <xs:element minOccurs="0" name="id_motif" type="xs:int" />
+      <xs:element minOccurs="0" name="id_societe" type="xs:int" />
+      <xs:element minOccurs="0" name="id_technicien" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Intervention" nillable="true" type="tns:Intervention" />
+  <xs:complexType name="Etat_intervention">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Etat_intervention1" nillable="true" type="tns:Etat_intervention" />
+      <xs:element minOccurs="0" name="Etat_intervention2" nillable="true" type="tns:Etat_intervention" />
+      <xs:element minOccurs="0" name="Intervention" nillable="true" type="tns:ArrayOfIntervention" />
+      <xs:element minOccurs="0" name="id_etat" type="xs:int" />
+      <xs:element minOccurs="0" name="libelle" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Etat_intervention" nillable="true" type="tns:Etat_intervention" />
+  <xs:complexType name="Motif_intervention">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Intervention" nillable="true" type="tns:ArrayOfIntervention" />
+      <xs:element minOccurs="0" name="id_motif" type="xs:int" />
+      <xs:element minOccurs="0" name="libelle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="prix_h" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Motif_intervention" nillable="true" type="tns:Motif_intervention" />
+  <xs:complexType name="Societe">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Compte_rendu" nillable="true" type="tns:ArrayOfCompte_rendu" />
+      <xs:element minOccurs="0" name="Compte_rendu1" nillable="true" type="tns:ArrayOfCompte_rendu" />
+      <xs:element minOccurs="0" name="Compte_rendu2" nillable="true" type="tns:ArrayOfCompte_rendu" />
+      <xs:element minOccurs="0" name="Intervention" nillable="true" type="tns:ArrayOfIntervention" />
+      <xs:element minOccurs="0" name="adresse_societe" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cp_societe" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="email_societe" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="id_societe" type="xs:int" />
+      <xs:element minOccurs="0" name="nom_societe" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tel_societe" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ville_societe" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Societe" nillable="true" type="tns:Societe" />
+  <xs:complexType name="ArrayOfCompte_rendu">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Compte_rendu" nillable="true" type="tns:Compte_rendu" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCompte_rendu" nillable="true" type="tns:ArrayOfCompte_rendu" />
+  <xs:complexType name="Technicien">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Compte_rendu" nillable="true" type="tns:ArrayOfCompte_rendu" />
+      <xs:element minOccurs="0" name="Intervention" nillable="true" type="tns:ArrayOfIntervention" />
+      <xs:element minOccurs="0" name="Materiel" nillable="true" type="tns:Materiel" />
+      <xs:element minOccurs="0" name="id_materiel" type="xs:int" />
+      <xs:element minOccurs="0" name="id_technicien" type="xs:int" />
+      <xs:element minOccurs="0" name="nom" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="prenom" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tel" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Technicien" nillable="true" type="tns:Technicien" />
+  <xs:complexType name="Materiel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Technicien" nillable="true" type="tns:ArrayOfTechnicien" />
+      <xs:element minOccurs="0" name="id_materiel" type="xs:int" />
+      <xs:element minOccurs="0" name="ip" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="modele" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="num_serie" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Materiel" nillable="true" type="tns:Materiel" />
+  <xs:complexType name="ArrayOfTechnicien">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Technicien" nillable="true" type="tns:Technicien" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTechnicien" nillable="true" type="tns:ArrayOfTechnicien" />
+  <xs:complexType name="ArrayOfMateriel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Materiel" nillable="true" type="tns:Materiel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMateriel" nillable="true" type="tns:ArrayOfMateriel" />
+  <xs:complexType name="ArrayOfSociete">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Societe" nillable="true" type="tns:Societe" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSociete" nillable="true" type="tns:ArrayOfSociete" />
+</xs:schema>
