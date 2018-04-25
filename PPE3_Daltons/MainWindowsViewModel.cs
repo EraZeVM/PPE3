@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using PPE3_Daltons.API_Daltons;
 using PPE3_Daltons.Company.Compte_rendu_Societe;
-using PPE3_Daltons.Company.Information_Societe;
 using PPE3_Daltons.Company.Intervention_Societe;
 using PPE3_Daltons.Company.Main_Societe;
 using PPE3_Daltons.Employees.Compte_Rendu_Intervention;
@@ -38,7 +37,6 @@ namespace PPE3_Daltons
             PageViewModels.Add(new MainTechnicienViewModel());
             PageViewModels.Add(new MainSocieteViewModel());
             PageViewModels.Add(new CompteRenduSocieteViewModel());
-            PageViewModels.Add(new InformationSocieteViewModel());
             PageViewModels.Add(new InterventionSocieteViewModel());
             PageViewModels.Add(new CompteRenduTechnicienViewModel());
             PageViewModels.Add(new InterventionTechnicienViewModel());
@@ -127,7 +125,7 @@ namespace PPE3_Daltons
             }
         }
 
-        public IPageViewModel InformationSociete
+        public IPageViewModel InterventionSociete
         {
             get
             {
@@ -135,7 +133,7 @@ namespace PPE3_Daltons
             }
         }
 
-        public IPageViewModel InterventionSociete
+        public IPageViewModel CompteRenduIntervention
         {
             get
             {
@@ -143,19 +141,11 @@ namespace PPE3_Daltons
             }
         }
 
-        public IPageViewModel CompteRenduIntervention
-        {
-            get
-            {
-                return PageViewModels[6];
-            }
-        }
-
         public IPageViewModel InterventionTechnicien
         {
             get
             {
-                return PageViewModels[7];
+                return PageViewModels[6];
             }
         }
 

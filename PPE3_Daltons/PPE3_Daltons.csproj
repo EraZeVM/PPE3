@@ -130,10 +130,6 @@
       <DependentUpon>CompteRenduSocieteView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Company\Compte_rendu_Societe\CompteRenduSocieteViewModel.cs" />
-    <Compile Include="Company\Information_Societe\InformationSocieteView.xaml.cs">
-      <DependentUpon>InformationSocieteView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Company\Information_Societe\InformationSocieteViewModel.cs" />
     <Compile Include="Company\Intervention_Societe\InterventionSocieteView.xaml.cs">
       <DependentUpon>InterventionSocieteView.xaml</DependentUpon>
     </Compile>
@@ -198,10 +194,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Company\Compte_rendu_Societe\CompteRenduSocieteView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Company\Information_Societe\InformationSocieteView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

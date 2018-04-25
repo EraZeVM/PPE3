@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using PPE3_Daltons.Company.Compte_rendu_Societe;
-using PPE3_Daltons.Company.Information_Societe;
 using PPE3_Daltons.Company.Intervention_Societe;
 using PPE3_Daltons.API_Daltons;
 using System.Windows.Data;

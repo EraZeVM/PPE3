@@ -10,16 +10,11 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 	<Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-			<RowDefinition Height="50" />
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-
-
-		<Grid Grid.Row="0" Grid.Column="0">
-
-			<telerik:RadGridView x:Name="RadGridView1" GroupRenderMode="Flat"
+		</Grid.RowDefinitions>
+		<telerik:RadGridView x:Name="RadGridView1" GroupRenderMode="Flat"
 							 ItemsSource="{Binding DataTechnicien}"
 								 SelectedItem="{Binding SelectedItem}"
 							 SelectionMode="Extended"
@@ -30,18 +25,15 @@
 							 ActionOnLostFocus="None"
 							 CanUserFreezeColumns="False"
 							 RowIndicatorVisibility="Collapsed">
-				<telerik:RadGridView.Columns>
-					<telerik:GridViewDataColumn  Header="Nom" DataMemberBinding="{Binding Nom}" IsFilterable="True" ShowFieldFilters="False"/>
-					<telerik:GridViewDataColumn  Header="Prenom" IsFilterable="True" DataMemberBinding="{Binding Prenom}" ShowFieldFilters="False"/>
-					<telerik:GridViewDataColumn  Header="Telephone" DataMemberBinding="{Binding Tel}"/>
-					<telerik:GridViewDataColumn  Header="Id_Materiel" DataMemberBinding="{Binding Id_Materiel}"/>
-				</telerik:RadGridView.Columns>
-			</telerik:RadGridView>
-
-		</Grid>
-
+			<telerik:RadGridView.Columns>
+				<telerik:GridViewDataColumn  Header="Nom" DataMemberBinding="{Binding Nom}" IsFilterable="True" ShowFieldFilters="False"/>
+				<telerik:GridViewDataColumn  Header="Prenom" IsFilterable="True" DataMemberBinding="{Binding Prenom}" ShowFieldFilters="False"/>
+				<telerik:GridViewDataColumn  Header="Telephone" DataMemberBinding="{Binding Tel}"/>
+				<telerik:GridViewDataColumn  Header="Id_Materiel" DataMemberBinding="{Binding Id_Materiel}"/>
+			</telerik:RadGridView.Columns>
+		</telerik:RadGridView>
 		<Grid Grid.Row="1" Grid.ColumnSpan="2">
-			
+
 		</Grid>
 	</Grid>
 </UserControl>

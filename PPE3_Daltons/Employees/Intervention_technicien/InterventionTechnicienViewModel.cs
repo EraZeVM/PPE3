@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Windows.Data;
 using PPE3_Daltons.API_Daltons;
 using PPE3_Daltons.Employees.Main_technicien;
 using PPE3_Daltons.Helper_Classes;
