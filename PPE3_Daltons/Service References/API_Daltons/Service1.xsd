@@ -119,4 +119,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfSociete" nillable="true" type="tns:ArrayOfSociete" />
+  <xs:complexType name="ArrayOfMotif_intervention">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Motif_intervention" nillable="true" type="tns:Motif_intervention" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMotif_intervention" nillable="true" type="tns:ArrayOfMotif_intervention" />
 </xs:schema>

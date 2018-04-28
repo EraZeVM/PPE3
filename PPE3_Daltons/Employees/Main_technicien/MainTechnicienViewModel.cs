@@ -39,6 +39,8 @@ namespace PPE3_Daltons.Employees.Main_technicien
 
         private int id_Materiel;
 
+        private int id_technicien;
+
         public MainTechnicienViewModel()
         {
             CurrentTechnicien = new Technicien();
@@ -205,6 +207,23 @@ namespace PPE3_Daltons.Employees.Main_technicien
                     return;
                 }
                 this.id_Materiel = value;
+            }
+        }
+
+        public int Id_Technicien
+        {
+            get
+            {
+                return this.id_technicien;
+            }
+
+            set
+            {
+                if (this.id_technicien == value)
+                {
+                    return;
+                }
+                this.id_technicien = value;
             }
         }
 

@@ -35,6 +35,8 @@ namespace PPE3_Daltons.Company.Main_Societe
 
         private string tel_societe;
 
+        private int id_societe;
+
         public ICommand addSociete;
        
         private ICommand deleteSociete;
@@ -187,6 +189,23 @@ namespace PPE3_Daltons.Company.Main_Societe
                     return;
                 }
                 this.currentSociete = value;
+            }
+        }
+
+        public int Id_societe
+        {
+            get
+            {
+                return this.id_societe;
+            }
+
+            set
+            {
+                if (this.id_societe == value)
+                {
+                    return;
+                }
+                this.id_societe = value;
             }
         }
 

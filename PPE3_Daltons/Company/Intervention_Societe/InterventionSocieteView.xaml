@@ -4,9 +4,78 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PPE3_Daltons.Company.Intervention_Societe"
+      xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+			 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
-    </Grid>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="Auto"/>
+		</Grid.ColumnDefinitions>
+		<Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+			<telerik:RadGridView GroupRenderMode="Flat"
+							 ItemsSource="{Binding MainSocieteViewModel.DataSociete}"
+							 SelectedItem="{Binding MainSocieteViewModel.SelectedItem}"
+							 AutoGenerateColumns="False"
+							 Margin="10"
+							 ShowGroupPanel="False"
+							 ActionOnLostFocus="None"
+							 CanUserFreezeColumns="False"
+							 RowIndicatorVisibility="Collapsed"
+								 IsReadOnly="True">
+				<telerik:RadGridView.Columns>
+					<telerik:GridViewDataColumn  Header="ID" IsFilterable="False" DataMemberBinding="{Binding Id_societe}"/>
+					<telerik:GridViewDataColumn  Header="Nom" IsFilterable="True" ShowFieldFilters="False" DataMemberBinding="{Binding Nom_societe}"/>
+					<telerik:GridViewDataColumn  Header="Adresse" DataMemberBinding="{Binding  Adresse_societe}"/>
+					<telerik:GridViewDataColumn  Header="CP" DataMemberBinding="{Binding  Cp_societe}"/>
+					<telerik:GridViewDataColumn  Header="Ville" DataMemberBinding="{Binding  Ville_societe}"/>
+					<telerik:GridViewDataColumn  Header="Telephone" DataMemberBinding="{Binding  Tel_societe}"/>
+					<telerik:GridViewDataColumn  Header="Email" DataMemberBinding="{Binding  Email_societe}"/>
+				</telerik:RadGridView.Columns>
+			</telerik:RadGridView>
+		</Grid>
+		<Grid Grid.Row="1" Grid.Column="0"></Grid>
+		<Grid Grid.Row="1" Grid.Column="1">
+			<telerik:RadGridView x:Name="RadGridView2" GroupRenderMode="Flat"
+							 ItemsSource="{Binding DataMotif}"
+							 SelectionMode="Extended"
+							 AutoGenerateColumns="False"
+							 Margin="0,5,0,0"
+							 IsReadOnly="True"
+							 ShowGroupPanel="False"
+							 ActionOnLostFocus="None"
+							 CanUserFreezeColumns="False"
+							 RowIndicatorVisibility="Collapsed">
+				<telerik:RadGridView.Columns>
+					<telerik:GridViewDataColumn  Header="ID" DataMemberBinding="{Binding Id_motif}" IsFilterable="True" ShowFieldFilters="False"/>
+					<telerik:GridViewDataColumn  Header="Libelle" DataMemberBinding="{Binding Libelle}" IsFilterable="True" ShowFieldFilters="False"/>
+				</telerik:RadGridView.Columns>
+			</telerik:RadGridView>
+		</Grid>
+		<Grid Grid.Row="1" Grid.Column="2">
+			<telerik:RadGridView x:Name="RadGridView3" GroupRenderMode="Flat"
+							 ItemsSource="{Binding MainTechnicienViewModel.DataTechnicien}"
+							 SelectedItem="{Binding MainTechnicienViewModel.SelectedItem}"
+							 SelectionMode="Extended"
+							 AutoGenerateColumns="False"
+							 Margin="0,5,0,0"
+							 IsReadOnly="True"
+							 ShowGroupPanel="False"
+							 ActionOnLostFocus="None"
+							 CanUserFreezeColumns="False"
+							 RowIndicatorVisibility="Collapsed">
+				<telerik:RadGridView.Columns>
+					<telerik:GridViewDataColumn  Header="ID" DataMemberBinding="{Binding Id_Technicien}" IsFilterable="True" ShowFieldFilters="False"/>
+					<telerik:GridViewDataColumn  Header="Nom" DataMemberBinding="{Binding Nom}" IsFilterable="True" ShowFieldFilters="False"/>
+					<telerik:GridViewDataColumn  Header="Prenom" IsFilterable="True" DataMemberBinding="{Binding Prenom}" ShowFieldFilters="False"/>
+				</telerik:RadGridView.Columns>
+			</telerik:RadGridView>
+		</Grid>
+	</Grid>
 </UserControl>

@@ -239,6 +239,9 @@
     <None Include="Service References\API_Daltons\PPE3_Daltons.API_Daltons.Materiel.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\API_Daltons\PPE3_Daltons.API_Daltons.Motif_intervention.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\API_Daltons\PPE3_Daltons.API_Daltons.Societe.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

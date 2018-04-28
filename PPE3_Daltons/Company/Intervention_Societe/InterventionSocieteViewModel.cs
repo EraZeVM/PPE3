@@ -6,6 +6,7 @@ using System.Text;
 using PPE3_Daltons.API_Daltons;
 using PPE3_Daltons.Helper_Classes;
 using PPE3_Daltons.Company.Main_Societe;
+using PPE3_Daltons.Employees.Main_technicien;
 
 namespace PPE3_Daltons.Company.Intervention_Societe
 {
@@ -14,9 +15,13 @@ namespace PPE3_Daltons.Company.Intervention_Societe
 
         private MainSocieteViewModel mainSocieteViewModel;
 
+        private MainTechnicienViewModel mainTechnicienViewModel;
+
         private IList<Intervention> intervention = null;
 
         private ObservableCollection<Intervention> data;
+
+        private ObservableCollection<Motif_intervention> dataMotif;
 
         private API_Daltons.Intervention currentIntervention;
 
@@ -32,11 +37,15 @@ namespace PPE3_Daltons.Company.Intervention_Societe
 
         private int id_etat;
 
+        private string libelle;
+
         private DateTime date_intervention;
 
         public InterventionSocieteViewModel()
         {
             CurrentIntervention = new Intervention();
+            MainTechnicienViewModel = new MainTechnicienViewModel();
+            MainSocieteViewModel = new MainSocieteViewModel();
         }
 
         public string Name
@@ -58,13 +67,24 @@ namespace PPE3_Daltons.Company.Intervention_Societe
             }
         }
 
-        public IList<Intervention> Data
+        public IList<Intervention> DataIntervention
         {
             get
             {
 
                 data = new ObservableCollection<Intervention>(SearchInterventionBase());
                 return data;
+
+            }
+        }
+
+        public IList<Motif_intervention> DataMotif
+        {
+            get
+            {
+
+                dataMotif = new ObservableCollection<Motif_intervention>(SearchMotifBase());
+                return dataMotif;
 
             }
         }
@@ -101,6 +121,23 @@ namespace PPE3_Daltons.Company.Intervention_Societe
                     return;
                 }
                 this.currentIntervention = value;
+            }
+        }
+
+        public MainTechnicienViewModel MainTechnicienViewModel
+        {
+            get
+            {
+                return this.mainTechnicienViewModel;
+            }
+
+            set
+            {
+                if (this.mainTechnicienViewModel == value)
+                {
+                    return;
+                }
+                this.mainTechnicienViewModel = value;
             }
         }
 
@@ -206,6 +243,23 @@ namespace PPE3_Daltons.Company.Intervention_Societe
             }
         }
 
+        public string Libelle
+        {
+            get
+            {
+                return this.libelle;
+            }
+
+            set
+            {
+                if (this.libelle == value)
+                {
+                    return;
+                }
+                this.libelle = value;
+            }
+        }
+
         public DateTime Date_intervention
         {
             get
@@ -237,6 +291,23 @@ namespace PPE3_Daltons.Company.Intervention_Societe
                 }
             }
             return ListIntervention;
+
+        }
+
+        private IList<Motif_intervention> SearchMotifBase()
+        {
+
+            Motif_intervention motif = new Motif_intervention();
+            motif.libelle = "";
+
+            IList<Motif_intervention> ListMotif = null;
+            using (API_Daltons.Service1Client api = new API_Daltons.Service1Client())
+            {
+                {
+                    ListMotif = api.SearchMotif();
+                }
+            }
+            return ListMotif;
 
         }
     }

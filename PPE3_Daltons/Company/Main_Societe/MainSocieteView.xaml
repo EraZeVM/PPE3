@@ -17,8 +17,12 @@
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
+		<!--<Grid.ColumnDefinitions>
+			<ColumnDefinition />
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>-->
 
-		<Grid Grid.Row="0" >
+		<Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
 
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto" />
@@ -29,11 +33,11 @@
 							 SelectedItem="{Binding SelectedItem}"
 							 AutoGenerateColumns="False"
 							 Margin="10"
-							 Grid.Row="1"
 							 ShowGroupPanel="False"
 							 ActionOnLostFocus="None"
 							 CanUserFreezeColumns="False"
-							 RowIndicatorVisibility="Collapsed">
+							 RowIndicatorVisibility="Collapsed"
+								 IsReadOnly="True">
 				<telerik:RadGridView.Columns>
 					<telerik:GridViewDataColumn  Header="Nom" IsFilterable="True" ShowFieldFilters="False" DataMemberBinding="{Binding Nom_societe}"/>
 					<telerik:GridViewDataColumn  Header="Adresse" DataMemberBinding="{Binding  Adresse_societe}"/>
@@ -44,7 +48,7 @@
 				</telerik:RadGridView.Columns>
 			</telerik:RadGridView>
 		</Grid>
-		<Grid Grid.Row="1" Margin="10">
+		<!--<Grid Grid.Row="1" Margin="10" Grid.Column="1">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition />
 				<ColumnDefinition />
@@ -80,8 +84,36 @@
 				<TextBox Text="{Binding Email_societe}"/>
 			</StackPanel>
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="3" Grid.ColumnSpan="2">
-			<Button Command="{Binding AddSociete}" Height="50" Width="200" Margin="10" Content="Ajouter" />
+				<Button Command="{Binding AddSociete}" Height="50" Width="200" Margin="10" Content="Ajouter" />
 			</StackPanel>
+		</Grid>-->
+		<Grid Grid.Row="1" Grid.Column="0">
+			<telerik:RadDataForm x:Name="dataform"
+							 Header="Detail Société"
+								 ItemsSource="{Binding SelectedItem}"
+								>
+				<telerik:RadDataForm.ReadOnlyTemplate>
+					<DataTemplate>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+							<StackPanel Orientation="Vertical" >
+							<telerik:DataFormDataField Label="Nom" DataMemberBinding="{Binding Nom_societe}" />
+							<telerik:DataFormDataField Label="Adresse" DataMemberBinding="{Binding Adresse_societe}" />
+							<telerik:DataFormDataField Label="Code Postale" DataMemberBinding="{Binding Cp_societe}" Grid.Column="0"/>
+							<telerik:DataFormDataField Label="" DataMemberBinding="{Binding Ville_societe}" Grid.Column="1"/>
+							<telerik:DataFormDataField Label="Téléphone" DataMemberBinding="{Binding Tel_societe}" />
+							<telerik:DataFormDataField Label="Email" DataMemberBinding="{Binding Email_societe}" />
+							</StackPanel>
+						</Grid>
+					</DataTemplate>
+		
+		</telerik:RadDataForm.ReadOnlyTemplate>
+			</telerik:RadDataForm>
+
+
 		</Grid>
 
 

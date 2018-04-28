@@ -177,10 +177,22 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="SearchMotif">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchMotifResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/API_Daltons" minOccurs="0" name="SearchMotifResult" nillable="true" type="q15:ArrayOfMotif_intervention" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="UPDSociete">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/API_Daltons" minOccurs="0" name="societe" nillable="true" type="q15:Societe" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/API_Daltons" minOccurs="0" name="societe" nillable="true" type="q16:Societe" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -192,7 +204,7 @@
   <xs:element name="UPDCompte_rendu">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/API_Daltons" minOccurs="0" name="compte_rendu" nillable="true" type="q16:Compte_rendu" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/API_Daltons" minOccurs="0" name="compte_rendu" nillable="true" type="q17:Compte_rendu" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -204,7 +216,7 @@
   <xs:element name="UPDTechnicien">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/API_Daltons" minOccurs="0" name="technicien" nillable="true" type="q17:Technicien" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/API_Daltons" minOccurs="0" name="technicien" nillable="true" type="q18:Technicien" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -216,7 +228,7 @@
   <xs:element name="UPDIntervention">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/API_Daltons" minOccurs="0" name="intervention" nillable="true" type="q18:Intervention" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/API_Daltons" minOccurs="0" name="intervention" nillable="true" type="q19:Intervention" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

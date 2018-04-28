@@ -1126,6 +1126,9 @@ namespace PPE3_Daltons.API_Daltons {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SearchTechnicien", ReplyAction="http://tempuri.org/IService1/SearchTechnicienResponse")]
         PPE3_Daltons.API_Daltons.Technicien[] SearchTechnicien();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SearchMotif", ReplyAction="http://tempuri.org/IService1/SearchMotifResponse")]
+        PPE3_Daltons.API_Daltons.Motif_intervention[] SearchMotif();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UPDSociete", ReplyAction="http://tempuri.org/IService1/UPDSocieteResponse")]
         void UPDSociete(PPE3_Daltons.API_Daltons.Societe societe);
         
@@ -1220,6 +1223,10 @@ namespace PPE3_Daltons.API_Daltons {
         
         public PPE3_Daltons.API_Daltons.Technicien[] SearchTechnicien() {
             return base.Channel.SearchTechnicien();
+        }
+        
+        public PPE3_Daltons.API_Daltons.Motif_intervention[] SearchMotif() {
+            return base.Channel.SearchMotif();
         }
         
         public void UPDSociete(PPE3_Daltons.API_Daltons.Societe societe) {
