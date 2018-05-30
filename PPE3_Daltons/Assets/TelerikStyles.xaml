@@ -18,15 +18,109 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Brushes.xaml"/>
         <ResourceDictionary Source="Fonts.xaml"/>
-        <ResourceDictionary Source="/Telerik.Windows.Themes.Windows8;component/Themes/Telerik.Windows.Controls.xaml"/>
-        <ResourceDictionary Source="/Telerik.Windows.Themes.Windows8;component/Themes/Telerik.Windows.Controls.Input.xaml"/>
-        <ResourceDictionary Source="/Telerik.Windows.Themes.Windows8;component/Themes/Telerik.Windows.Controls.GridView.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
 
 
     <telerik:Windows8Theme x:Key="Theme"/>
 
+    <Style x:Key="MaskedInputTextBoxStyle" TargetType="MaskedInput:PreviewInputTextBox">
+        <Setter Property="Foreground" Value="{StaticResource TextContentBrush}"/>
+        <Setter Property="MinHeight" Value="20"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="MaskedInput:PreviewInputTextBox">
+                    <Grid x:Name="RootElement" Background="Transparent">
+                        <ScrollViewer x:Name="ContentElement" BorderThickness="0" Background="Transparent" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" telerik:StyleManager.Theme="{StaticResource Theme}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ControlTemplate x:Key="MaskedInputClearButtonTemplate" TargetType="telerik:RadButton">
+        <Border x:Name="ButtonBorder" BorderBrush="White" BorderThickness="1" CornerRadius="15">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF8F2121" Offset="1"/>
+                    <GradientStop Color="#FFEB4545"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualStateGroup.Transitions>
+                        <VisualTransition GeneratedDuration="0:0:0.2"/>
+                    </VisualStateGroup.Transitions>
+                    <VisualState x:Name="Normal"/>
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Background" Storyboard.TargetName="ButtonBorder">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FF410404" Offset="1"/>
+                                            <GradientStop Color="#FFE23737"/>
+                                        </LinearGradientBrush>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Background" Storyboard.TargetName="ButtonBorder">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FFE23737" Offset="1"/>
+                                            <GradientStop Color="#FF410404"/>
+                                        </LinearGradientBrush>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="ButtonBorder">
+                                <DiscreteObjectKeyFrame KeyTime="00:00:00" />
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="ButtonBorder">
+                                <DiscreteObjectKeyFrame KeyTime="00:00:00" />
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Stroke" Storyboard.TargetName="Path">
+                                <DiscreteObjectKeyFrame KeyTime="00:00:00" />
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+                <VisualStateGroup x:Name="FocusStates">
+                    <VisualState x:Name="Focused"/>
+                    <VisualState x:Name="Unfocused"/>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Path x:Name="Path" Data="M5,0.5 L6,0.5 6,5 10.5,5 10.5,6 6,6 6,10.5 5,10.5 5,6 0.5,6 0.5,5 5,5 z" Margin="4" RenderTransformOrigin="0.5,0.5" Stretch="Fill" Stroke="White">
+                <Path.RenderTransform>
+                    <RotateTransform Angle="-45"/>
+                </Path.RenderTransform>
+            </Path>
+        </Border>
+    </ControlTemplate>
+
+    <telerik:BooleanToVisibilityConverter x:Key="boolToVisConverter"/>
+    <MaskedInput:HorizontalContentAlignmentToTextAlignmentConverter x:Key="conv"/>
+
+    <Style x:Key="MaskedInputClearButtonStyle" TargetType="telerik:RadButton">
+        <Setter Property="Template" Value="{StaticResource MaskedInputClearButtonTemplate}"/>
+        <Setter Property="Width" Value="19"/>
+        <Setter Property="Height" Value="19"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Margin" Value="0 0 3 0"/>
+        <Setter Property="Cursor" Value="Hand"/>
+    </Style>
 
 
     <!-- Implicit Styles -->
@@ -338,9 +432,9 @@
 												IsTabStop="False"
 												Interval="50"
 												Width="18"/>
-                                            <RepeatButton x:Name="HorizontalLargeDecrease" Grid.Column="1" MinHeight="0"  IsTabStop="False" Interval="50"/>
+                                            <RepeatButton x:Name="HorizontalLargeDecrease" Grid.Column="1" MinHeight="0"   IsTabStop="False" Interval="50"/>
                                             <Thumb x:Name="HorizontalThumb" Grid.Column="2" Padding="0 6 0 5"  MinWidth="18"/>
-                                            <RepeatButton x:Name="HorizontalLargeIncrease" Grid.Column="3" MinHeight="0"  IsTabStop="False" Interval="50"/>
+                                            <RepeatButton x:Name="HorizontalLargeIncrease" Grid.Column="3" MinHeight="0"   IsTabStop="False" Interval="50"/>
                                             <RepeatButton x:Name="HorizontalSmallIncrease"
 												Grid.Column="4"
 												MinHeight="0"
@@ -363,9 +457,9 @@
 												Height="18"
 												IsTabStop="False"
 												Interval="50"/>
-                                            <RepeatButton x:Name="VerticalLargeDecrease" Grid.Row="1" MinHeight="0"  IsTabStop="False" Interval="50"/>
+                                            <RepeatButton x:Name="VerticalLargeDecrease" Grid.Row="1" MinHeight="0"   IsTabStop="False" Interval="50"/>
                                             <Thumb x:Name="VerticalThumb" Grid.Row="2" Padding="6 0 5 0"  MinHeight="18"/>
-                                            <RepeatButton x:Name="VerticalLargeIncrease" Grid.Row="3" MinHeight="0"  IsTabStop="False" Interval="50"/>
+                                            <RepeatButton x:Name="VerticalLargeIncrease" Grid.Row="3" MinHeight="0"   IsTabStop="False" Interval="50"/>
                                             <RepeatButton x:Name="VerticalSmallIncrease"
 												Grid.Row="4"
 												MinHeight="0"
@@ -598,10 +692,11 @@
 											x:Name="PART_HierarchyExpandButton"
 											telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
 											IsHitTestVisible="{Binding IsExpandable, RelativeSource={RelativeSource TemplatedParent}}"
+											Visibility="{Binding HasHierarchy,  RelativeSource={RelativeSource TemplatedParent}}"
 											IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
 											IsTabStop="{TemplateBinding IsTabStop}"
 											Width="26"/>
-                                        <Border Grid.Column="2" telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical" />
+                                        <Border Grid.Column="2" telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical" Visibility="{Binding HasHierarchy,  RelativeSource={RelativeSource TemplatedParent}}"/>
                                         <telerik:DetailsPresenter x:Name="PART_DetailsPresenter"
 											Grid.Column="2"
 											Grid.ColumnSpan="2"
@@ -613,6 +708,7 @@
 											Grid.Column="2"
 											Grid.Row="2"
 											Grid.ColumnSpan="2"
+											Visibility="{Binding IsExpanded,  RelativeSource={RelativeSource TemplatedParent}}"
 											HorizontalAlignment="{Binding RenderHorizontalAlignment, RelativeSource={RelativeSource TemplatedParent}}"
 											MaxWidth="30000"
 											Padding="10"
@@ -871,10 +967,11 @@
 											x:Name="PART_HierarchyExpandButton"
 											telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
 											IsHitTestVisible="{Binding IsExpandable, RelativeSource={RelativeSource TemplatedParent}}"
+											Visibility="{Binding HasHierarchy,  RelativeSource={RelativeSource TemplatedParent}}"
 											IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
 											IsTabStop="{TemplateBinding IsTabStop}"
 											Width="26"/>
-                                        <Border Grid.Column="2" telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical" />
+                                        <Border Grid.Column="2" telerik:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical" Visibility="{Binding HasHierarchy,  RelativeSource={RelativeSource TemplatedParent}}"/>
                                         <telerik:DetailsPresenter x:Name="PART_DetailsPresenter"
 											Grid.Column="2"
 											Grid.ColumnSpan="2"
@@ -886,6 +983,7 @@
 											Grid.Column="2"
 											Grid.Row="2"
 											Grid.ColumnSpan="2"
+											Visibility="{Binding IsExpanded,  RelativeSource={RelativeSource TemplatedParent}}"
 											HorizontalAlignment="{Binding RenderHorizontalAlignment, RelativeSource={RelativeSource TemplatedParent}}"
 											MaxWidth="30000"
 											Padding="10"
@@ -989,14 +1087,14 @@
                                 <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1"/>
                             </DoubleAnimationUsingKeyFrames>
                             <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
-                                <DiscreteObjectKeyFrame KeyTime="0:0:0" />
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0"/>
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Ascending">
                         <Storyboard>
                             <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
-                                <DiscreteObjectKeyFrame KeyTime="0:0:0" />
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0"/>
                             </ObjectAnimationUsingKeyFrames>
                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_SortIndicator" Storyboard.TargetProperty="Opacity">
                                 <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1"/>
@@ -1009,7 +1107,7 @@
                     <VisualState x:Name="Descending">
                         <Storyboard>
                             <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
-                                <DiscreteObjectKeyFrame KeyTime="0:0:0" />
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0"/>
                             </ObjectAnimationUsingKeyFrames>
                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_SortIndicator" Storyboard.TargetProperty="Opacity">
                                 <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1"/>
@@ -1101,10 +1199,12 @@
                 <Thumb x:Name="PART_LeftHeaderGripper"
 					HorizontalAlignment="Left"
 					IsTabStop="{TemplateBinding IsTabStop}"
+					
 					Grid.ColumnSpan="2"/>
                 <Thumb x:Name="PART_RightHeaderGripper"
 					HorizontalAlignment="Right"
 					IsTabStop="{TemplateBinding IsTabStop}"
+					
 					Grid.ColumnSpan="2"/>
             </Grid>
             <telerik:FieldFilterControl x:Name="PART_FieldFilterControl" Visibility="{TemplateBinding FieldFilterControlVisibility}" Grid.Row="1"/>
@@ -1140,74 +1240,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
     </Style>
 
-    <!--telerik:RadListBox-->
-    <Style x:Key="RadListBoxItemStyle" TargetType="telerik:RadListBoxItem">
-        <Setter Property="Padding" Value="3"/>
-        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-        <Setter Property="VerticalContentAlignment" Value="Top"/>
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Foreground" Value="{StaticResource TextContentBrush}"/>
-        <Setter Property="telerik:DragDropManager.AllowDrag" Value="True" />
-        <Setter Property="telerik:DragDropManager.AllowCapturedDrag" Value="True" />
-        <Setter Property="telerik:TouchManager.DragStartTrigger" Value="TapHoldAndMove"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="telerik:RadListBoxItem">
-                    <Grid>
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal"/>
-                                <VisualState x:Name="MouseOver">
-                                    <Storyboard>
-                                        <DoubleAnimation Duration="0" Storyboard.TargetName="MouseOverVisual" Storyboard.TargetProperty="Opacity" To="1"/>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Disabled">
-                                    <Storyboard>
-                                        <DoubleAnimation Duration="0" Storyboard.TargetName="contentPresenter" Storyboard.TargetProperty="Opacity" To="0.5"/>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                            <VisualStateGroup x:Name="SelectionStates">
-                                <VisualState x:Name="Unselected"/>
-                                <VisualState x:Name="Selected">
-                                    <Storyboard>
-                                        <DoubleAnimation Duration="0" Storyboard.TargetName="SelectedVisual" Storyboard.TargetProperty="Opacity" To="1"/>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                            <VisualStateGroup x:Name="FocusStates">
-                                <VisualState x:Name="Focused">
-                                    <Storyboard>
-                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FocusVisual"/>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Unfocused"/>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Border
-							BorderThickness="{TemplateBinding BorderThickness}"
-							Background="{TemplateBinding Background}"
-							BorderBrush="{TemplateBinding BorderBrush}"
-							/>
-                        <ContentControl x:Name="contentPresenter"
-							Margin="{TemplateBinding Padding}"
-							Foreground="{TemplateBinding Foreground}"
-							ContentTemplate="{TemplateBinding ContentTemplate}"
-							Content="{TemplateBinding Content}"
-							IsTabStop="False"
-							HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-							VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        <Border x:Name="FocusVisual"
-							Opacity="0"
-							BorderThickness="1"/>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+    
 
     <!--<telerik:RadMenuItem>-->
 
@@ -1652,7 +1685,7 @@
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Background" Value="{StaticResource MenuBrush2}"/>
         <Setter Property="BorderBrush" Value="{StaticResource BlankBackgroundBrush}"/>
-        <Setter Property="MinWidth" Value="100"/>
+        <Setter Property="MinWidth" Value="160"/>
         <Setter Property="IconColumnWidth" Value="0" />
         <Setter Property="Height" Value="25" />
         <Setter Property="Foreground" Value="{StaticResource TextContentBrush}"/>
@@ -1702,7 +1735,7 @@
                     </VisualState>
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <Border x:Name="ButtonIcon" CornerRadius="3" Margin="{TemplateBinding Padding}" Background="{StaticResource VerticalRepeatButtonBrush}"/>
+            <Border x:Name="ButtonIcon" CornerRadius="3" Margin="{TemplateBinding Padding}" />
         </Border>
     </ControlTemplate>
     <ControlTemplate x:Key="SmallStepButtonTemplate" TargetType="RepeatButton">
@@ -1862,20 +1895,6 @@
         </Grid>
     </ControlTemplate>
 
-    <!--RadNumericUpDown Style-->
-    <Style TargetType="telerik:RadNumericUpDown" x:Key="DefaultRadNumericUpDownStyle">
-        <Setter Property="FontFamily" Value="{StaticResource ContentFontFamily}"/>
-        <Setter Property="FontSize" Value="{StaticResource ContentFontSize}"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Background" Value="{StaticResource BlankBackgroundBrush}"/>
-        <Setter Property="Foreground" Value="{StaticResource TextContentBrush}"/>
-        <Setter Property="Padding" Value="2"/>
-        <Setter Property="MinHeight" Value="25"/>
-        <Setter Property="BorderBrush" Value="{StaticResource BaseBrush5}"/>
-        <Setter Property="Template" Value="{StaticResource RadNumericUpDownTemplate}"/>
-        <Setter Property="HorizontalAlignment" Value="Stretch"/>
-        <Setter Property="VerticalAlignment" Value="Stretch"/>
-    </Style>
 
 
     <SolidColorBrush x:Key="ControlInnerBorder_Focused" Color="Transparent"/>
@@ -1920,11 +1939,150 @@
     </LinearGradientBrush>
     <SolidColorBrush x:Key="ButtonBorder_Focus" Color="#FFDCDBDB"/>
     <SolidColorBrush x:Key="Icon_Normal" Color="#FFC5C2C2"/>
+    
+    <!--Button-->
+    <Style TargetType="Button" x:Key="DefaultButtonStyle">
+        <Setter Property="Background" Value="{StaticResource NormalBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextContentBrush}"/>
+        <Setter Property="FontFamily" Value="{StaticResource ContentFontFamily}"/>
+        <Setter Property="FontSize" Value="{StaticResource ContentFontSize}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="{StaticResource NormalBorderBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid x:Name="grid" RenderTransformOrigin="0.5,0.5" Margin="0">
+                        <Grid.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Grid.RenderTransform>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="MouseOver" GeneratedDuration="0:0:0.1" To="Pressed">
+                                        <VisualTransition.GeneratedEasingFunction>
+                                            <ExponentialEase EasingMode="EaseIn" Exponent="-2"/>
+                                        </VisualTransition.GeneratedEasingFunction>
+                                    </VisualTransition>
+                                    <VisualTransition From="Pressed" GeneratedDuration="0:0:0.1" To="MouseOver">
+                                        <VisualTransition.GeneratedEasingFunction>
+                                            <ExponentialEase EasingMode="EaseOut" Exponent="0"/>
+                                        </VisualTransition.GeneratedEasingFunction>
+                                    </VisualTransition>
+                                    <VisualTransition From="Normal" GeneratedDuration="0:0:0.01" To="MouseOver">
+                                        <VisualTransition.GeneratedEasingFunction>
+                                            <ExponentialEase EasingMode="EaseIn" Exponent="7"/>
+                                        </VisualTransition.GeneratedEasingFunction>
+                                    </VisualTransition>
+                                    <VisualTransition From="MouseOver" GeneratedDuration="0:0:0.1" To="Normal">
+                                        <VisualTransition.GeneratedEasingFunction>
+                                            <CircleEase EasingMode="EaseIn"/>
+                                        </VisualTransition.GeneratedEasingFunction>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="MouseOverBorder">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="PressedBorder" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="1.0" KeySpline="0,0,0.0299999993294477,0.920000016689301"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="grid">
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.01" Value="1.0"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="grid">
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.01" Value="1.0"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="DisabledVisualElement" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0.75"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="contentPresenter" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0.3"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="FocusVisualElement" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="1.0"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unfocused"/>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="BaseBorder" BorderThickness="1" >
+                            <Border.BorderBrush>
+                                <SolidColorBrush Color="{StaticResource BaseColor5}"/>
+                            </Border.BorderBrush>
+                            <Grid>
+                                <Border x:Name="Background" BorderThickness="0">
+                                    <Border.Background>
+                                        <SolidColorBrush Color="{StaticResource BaseColor7}"/>
+                                    </Border.Background>
+                                </Border>
+                                <Border x:Name="MouseOverBorder" Opacity="0" Margin="0" BorderThickness="1">
+                                    <Border.Background>
+                                        <SolidColorBrush Color="{StaticResource BaseColor6}"/>
+                                    </Border.Background>
+                                </Border>
+
+                                <Border x:Name="PressedBorder" Opacity="0" RenderTransformOrigin="0.5,0.5" Margin="0">
+                                    <Border.BorderBrush>
+                                        <SolidColorBrush Color="{StaticResource BaseColor5}"/>
+                                    </Border.BorderBrush>
+                                    <Border.Background>
+                                        <SolidColorBrush x:Name="MouseOverBrush" Color="{StaticResource BaseColor5}"/>
+                                    </Border.Background>
+                                    <Border.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </Border.RenderTransform>
+                                </Border>
+                            </Grid>
+                        </Border>
+                        <Rectangle x:Name="DisabledVisualElement" Fill="{StaticResource DisabledBackgroundBrush}" IsHitTestVisible="false" Opacity="0" Stroke="{StaticResource DisabledBackgroundBrush}"/>
+                        <ContentControl x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Padding="2" FontSize="12" HorizontalAlignment="Center" >
+                            <ContentControl.Foreground>
+                                <SolidColorBrush Color="{StaticResource BaseColor1}"/>
+                            </ContentControl.Foreground>
+                        </ContentControl>
+                        <Rectangle x:Name="FocusVisualElement" IsHitTestVisible="false" Margin="0" Opacity="0"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Height" Value="25"/>
+    </Style>
+
 
     <!-- When defining your own styles, set "based on" the same way to keep control theming -->
-    <Style TargetType="telerik:RadGridView" BasedOn="{StaticResource RadGridViewStyle}"/>
+    <Style TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}" />
     <Style TargetType="telerik:GridViewHeaderCell" BasedOn="{StaticResource GridViewHeaderCellStyle}"/>
-    <Style TargetType="telerik:RadListBoxItem" BasedOn="{StaticResource RadListBoxItemStyle}"/>
-    <Style TargetType="telerik:RadMenuItem" BasedOn="{StaticResource RadMenuItemBaseStyle1}" />
+    <!--<Style TargetType="telerik:RadGridView" BasedOn="{StaticResource RadGridViewStyle}"/>-->
+    <!--
+    
+    <Style TargetType="telerik:CommonColumnHeader" BasedOn="{StaticResource DefaultColumnHeaderGroupStyle}"/>
+    <Style TargetType="telerik:RadMenuItem" BasedOn="{StaticResource RadMenuItemBaseStyle1}" />-->
 
 </ResourceDictionary>

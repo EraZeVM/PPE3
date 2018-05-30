@@ -7,6 +7,7 @@ using PPE3_Daltons.API_Daltons;
 using PPE3_Daltons.Helper_Classes;
 using PPE3_Daltons.Company.Main_Societe;
 using PPE3_Daltons.Employees.Main_technicien;
+using System.Windows.Input;
 
 namespace PPE3_Daltons.Company.Intervention_Societe
 {
@@ -40,6 +41,8 @@ namespace PPE3_Daltons.Company.Intervention_Societe
         private string libelle;
 
         private DateTime date_intervention;
+
+        public ICommand addIntervention;
 
         public InterventionSocieteViewModel()
         {
@@ -309,6 +312,47 @@ namespace PPE3_Daltons.Company.Intervention_Societe
             }
             return ListMotif;
 
+        }
+
+        private void AddInterventionBase()
+        {
+            Intervention item = new Intervention();
+
+            int id_intervention = 0;
+            item.date_intervention = Date_intervention;
+            item.id_societe = Id_societe;
+            item.id_motif = Id_motif;
+            item.id_technicien = Id_technicien;
+            item.id_etat = Id_etat;
+            using (API_Daltons.Service1Client api = new API_Daltons.Service1Client())
+            {
+                id_intervention = api.AddIntervention(item);
+            }
+            if (id_intervention > 0)
+            {
+                date_intervention = DateTime.Today;
+
+                RaisePropertyChanged("Date_intervention");
+                RaisePropertyChanged("Id_societe");
+                RaisePropertyChanged("Id_motif");
+                RaisePropertyChanged("Id_technicien");
+                RaisePropertyChanged("Cp_societe");
+            }
+            RaisePropertyChanged("DataIntervention");
+        }
+
+        public ICommand AddIntervention
+        {
+            get
+            {
+                if (addIntervention == null)
+                {
+                    addIntervention = new RelayCommand(
+                        p => AddInterventionBase());
+                }
+
+                return addIntervention;
+            }
         }
     }
 }

@@ -19,7 +19,7 @@ namespace PPE3_Daltons.Company.Main_Societe
 
         private ObservableCollection<Societe> dataSociete;
 
-        private Societe selectedItem;
+        private Societe selectedSociete;
 
         private API_Daltons.Societe currentSociete;
          
@@ -43,10 +43,12 @@ namespace PPE3_Daltons.Company.Main_Societe
 
         private ICommand updateSociete;
 
+        ICollectionView myDataView;
+
         public MainSocieteViewModel()
         {
 
-            CurrentSociete = new Societe();
+            currentSociete = new API_Daltons.Societe();
         }
 
         public string Name
@@ -60,6 +62,13 @@ namespace PPE3_Daltons.Company.Main_Societe
             {
 
                 dataSociete = new ObservableCollection<Societe>(SearchSocieteBase());
+                myDataView = CollectionViewSource.GetDefaultView(dataSociete);
+
+                myDataView.CurrentChanged += delegate
+                {
+                    //stores the current selected person
+                    SelectedSociete = (Societe)myDataView.CurrentItem;
+                };
                 return dataSociete;
 
             }
@@ -92,12 +101,12 @@ namespace PPE3_Daltons.Company.Main_Societe
             Societe societes = new Societe();
 
             int id_societe = 0;
-            societes.nom_societe = nom_societe;
-            societes.adresse_societe = adresse_societe;
-            societes.email_societe = email_societe;
-            societes.ville_societe = ville_societe;
-            societes.cp_societe = cp_societe;
-            societes.tel_societe = tel_societe;
+            societes.nom_societe = Nom_societe;
+            societes.adresse_societe = Adresse_societe;
+            societes.email_societe = Email_societe;
+            societes.ville_societe = Ville_societe;
+            societes.cp_societe = Cp_societe;
+            societes.tel_societe = Tel_societe;
 
             using (API_Daltons.Service1Client api = new API_Daltons.Service1Client())
             {
@@ -112,12 +121,12 @@ namespace PPE3_Daltons.Company.Main_Societe
                 cp_societe = "";
                 tel_societe = "";
 
-                RaisePropertyChanged("nom_societe");
-                RaisePropertyChanged("adresse_societe");
-                RaisePropertyChanged("email_societe");
-                RaisePropertyChanged("ville_societe");
-                RaisePropertyChanged("cp_societe");
-                RaisePropertyChanged("tel_societe");
+                RaisePropertyChanged("Nom_societe");
+                RaisePropertyChanged("Adresse_societe");
+                RaisePropertyChanged("Email_societe");
+                RaisePropertyChanged("Ville_societe");
+                RaisePropertyChanged("Cp_societe");
+                RaisePropertyChanged("Tel_societe");
             }
             RaisePropertyChanged("DataSociete");
         }
@@ -126,16 +135,17 @@ namespace PPE3_Daltons.Company.Main_Societe
         {
             using (API_Daltons.Service1Client api = new API_Daltons.Service1Client())
             {
-                api.DeleteSociete(SelectedItem);
+                api.DeleteSociete(SelectedSociete);
                 RaisePropertyChanged("DataSociete");
             }
 
         }
+
         private void UpdateSocieteBase()
         {
             using (API_Daltons.Service1Client api = new API_Daltons.Service1Client())
             {
-                api.UPDSociete(SelectedItem);
+                api.UPDSociete(SelectedSociete);
                 RaisePropertyChanged("DataSociete");
             }
         }
@@ -157,38 +167,24 @@ namespace PPE3_Daltons.Company.Main_Societe
                 this.societe = value;
             }
         }
-        public Societe SelectedItem
+
+
+        public Societe SelectedSociete
         {
             get
             {
-                return this.selectedItem;
+                return this.selectedSociete;
             }
 
             set
             {
-                if (this.selectedItem == value)
+                if (this.selectedSociete == value)
                 {
                     return;
                 }
-                this.selectedItem = value;
-            }
-        }
+                this.selectedSociete = value;
+                OnPropertyChanged("SelectedSociete");
 
-
-        public API_Daltons.Societe CurrentSociete
-        {
-            get
-            {
-                return this.currentSociete;
-            }
-
-            set
-            {
-                if (this.currentSociete == value)
-                {
-                    return;
-                }
-                this.currentSociete = value;
             }
         }
 
@@ -206,6 +202,7 @@ namespace PPE3_Daltons.Company.Main_Societe
                     return;
                 }
                 this.id_societe = value;
+                this.RaisePropertyChanged("Id_societe");
             }
         }
 
@@ -223,6 +220,7 @@ namespace PPE3_Daltons.Company.Main_Societe
                     return;
                 }
                 this.nom_societe = value;
+                this.RaisePropertyChanged("Nom_societe");
             }
         }
 
@@ -240,6 +238,7 @@ namespace PPE3_Daltons.Company.Main_Societe
                     return;
                 }
                 this.email_societe = value;
+                this.RaisePropertyChanged("Email_societe");
             }
         }
 
@@ -257,6 +256,7 @@ namespace PPE3_Daltons.Company.Main_Societe
                     return;
                 }
                 this.adresse_societe = value;
+                this.RaisePropertyChanged("Adresse_societe");
             }
         }
 
@@ -274,6 +274,7 @@ namespace PPE3_Daltons.Company.Main_Societe
                     return;
                 }
                 this.ville_societe = value;
+                this.RaisePropertyChanged("Ville_societe");
             }
         }
 
@@ -291,6 +292,7 @@ namespace PPE3_Daltons.Company.Main_Societe
                     return;
                 }
                 this.cp_societe = value;
+                this.RaisePropertyChanged("Cp_societe");
             }
         }
 
@@ -308,6 +310,7 @@ namespace PPE3_Daltons.Company.Main_Societe
                     return;
                 }
                 this.tel_societe = value;
+                this.RaisePropertyChanged("Tel_societe");
             }
         }
 

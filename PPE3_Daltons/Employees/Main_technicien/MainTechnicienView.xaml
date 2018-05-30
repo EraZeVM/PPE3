@@ -9,31 +9,98 @@
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="*" />
-		</Grid.RowDefinitions>
-		<telerik:RadGridView x:Name="RadGridView1" GroupRenderMode="Flat"
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <telerik:RadGridView x:Name="RadGridView1" GroupRenderMode="Flat"
 							 ItemsSource="{Binding DataTechnicien}"
 								 SelectedItem="{Binding SelectedItem}"
 							 SelectionMode="Extended"
 							 AutoGenerateColumns="False"
 							 Margin="0,5,0,0"
-							 Grid.Row="1"
+							 Grid.Row="0"
+							 ShowGroupPanel="False"
+							 ActionOnLostFocus="None"
+                                 IsSynchronizedWithCurrentItem="True"
+							 CanUserFreezeColumns="False"
+							 RowIndicatorVisibility="Collapsed">
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn  Header="Nom" DataMemberBinding="{Binding Nom}" IsFilterable="True" ShowFieldFilters="False"/>
+                    <telerik:GridViewDataColumn  Header="Prenom" IsFilterable="True" DataMemberBinding="{Binding Prenom}" ShowFieldFilters="False"/>
+                    <telerik:GridViewDataColumn  Header="Telephone" DataMemberBinding="{Binding Tel}"/>
+                    <telerik:GridViewDataColumn  Header="Id_Materiel" DataMemberBinding="{Binding Id_Materiel}" Width="*"/>
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+            <StackPanel Grid.Row="1">
+                <Button Command="{Binding DeleteTechnicien}" Content="Supprimer"/>
+                <Button Command="{Binding UpdateTechnicien}" Content="Modifier"  />
+
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="550"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Label Content="Ajouter un client" HorizontalAlignment="Left" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="0"  VerticalAlignment="Top"/>
+
+            <Label Content="Nom" HorizontalAlignment="Left"  VerticalAlignment="Top" Grid.Column="0" Grid.Row="1"/>
+            <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top"  MaxLength="75"  Width="550" Grid.Column="1" Grid.Row="1"
+						 Text="{Binding Nom}"/>
+
+            <Label Content="Prénom" HorizontalAlignment="Left"  VerticalAlignment="Top" Grid.Column="0" Grid.Row="2"/>
+            <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top"  MaxLength="75" Width="550" Grid.Column="1" Grid.Row="2"
+						 Text="{Binding Prenom}"/>
+
+            <Label Content="Téléphone" HorizontalAlignment="Left"  VerticalAlignment="Top" Grid.Column="0" Grid.Row="3"/>
+            <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top"  MaxLength="75" Width="550" Grid.Column="1" Grid.Row="3"
+						 Text="{Binding Tel}"/>
+
+            <Label Content="Id_matériel" HorizontalAlignment="Left"  VerticalAlignment="Top" Grid.Column="0" Grid.Row="4"/>
+            <TextBox HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" VerticalAlignment="Top"  MaxLength="75" Width="550" Grid.Column="1" Grid.Row="4"
+						 Text="{Binding Id_Materiel}"/>
+
+            <Button Content="Ajouter" Command="{Binding AddTechnicien}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5"/>
+
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="1">
+            <telerik:RadGridView x:Name="RadGridView2" GroupRenderMode="Flat"
+							 ItemsSource="{Binding DataMateriel}"
+							 SelectionMode="Extended"
+							 AutoGenerateColumns="False"
+							 Margin="0,5,0,0"
+							 Grid.Row="0"
 							 ShowGroupPanel="False"
 							 ActionOnLostFocus="None"
 							 CanUserFreezeColumns="False"
 							 RowIndicatorVisibility="Collapsed">
-			<telerik:RadGridView.Columns>
-				<telerik:GridViewDataColumn  Header="Nom" DataMemberBinding="{Binding Nom}" IsFilterable="True" ShowFieldFilters="False"/>
-				<telerik:GridViewDataColumn  Header="Prenom" IsFilterable="True" DataMemberBinding="{Binding Prenom}" ShowFieldFilters="False"/>
-				<telerik:GridViewDataColumn  Header="Telephone" DataMemberBinding="{Binding Tel}"/>
-				<telerik:GridViewDataColumn  Header="Id_Materiel" DataMemberBinding="{Binding Id_Materiel}"/>
-			</telerik:RadGridView.Columns>
-		</telerik:RadGridView>
-		<Grid Grid.Row="1" Grid.ColumnSpan="2">
-
-		</Grid>
-	</Grid>
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn  Header="Id_Materiel" DataMemberBinding="{Binding Id_Materiel}" ShowFieldFilters="False"/>
+                    <telerik:GridViewDataColumn  Header="Modèle" IsFilterable="True" DataMemberBinding="{Binding Modele}" ShowFieldFilters="False"/>
+                    <telerik:GridViewDataColumn  Header="Numéro de Série" DataMemberBinding="{Binding Num_serie}" ShowFieldFilters="False"/>
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+        </Grid>
+    </Grid>
 </UserControl>

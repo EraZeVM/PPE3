@@ -8,6 +8,8 @@ using PPE3_Daltons.Helper_Classes;
 using PPE3_Daltons.API_Daltons;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using System.ComponentModel;
+using System.Windows.Data;
 
 namespace PPE3_Daltons.Employees.Main_technicien
 {
@@ -19,23 +21,31 @@ namespace PPE3_Daltons.Employees.Main_technicien
 
         private IList<Technicien> technicien;
 
+        private ObservableCollection<Materiel> dataMateriel;        
+        
         private ObservableCollection<Technicien> dataTechnicien;
 
         private API_Daltons.Technicien currentTechnicien;
 
         private Technicien selectedItem;
 
-        private ICommand changePageCommand;
+        public ICommand addTechnicien;
 
-        private IPageViewModel currentPageViewModel;
+        private ICommand deleteTechnicien;
 
-        private List<IPageViewModel> pageViewModels;
+        private ICommand updateTechnicien;
+
+        ICollectionView myDataView;
 
         private string nom;
 
         private string prenom;
 
         private string tel;
+
+        private string modele;
+
+        private string num_serie;
 
         private int id_Materiel;
 
@@ -45,12 +55,6 @@ namespace PPE3_Daltons.Employees.Main_technicien
         {
             CurrentTechnicien = new Technicien();
 
-            PageViewModels.Add(new CompteRenduTechnicienViewModel());
-            PageViewModels.Add(new InterventionTechnicienViewModel());
-
-            // Set starting page
-            CurrentPageViewModel = PageViewModels[0];
-
         }
 
         public IList<Technicien> DataTechnicien
@@ -59,7 +63,26 @@ namespace PPE3_Daltons.Employees.Main_technicien
             {
 
                 dataTechnicien = new ObservableCollection<Technicien>(SearchTechnicienBase());
+                myDataView = CollectionViewSource.GetDefaultView(dataTechnicien);
+
+                myDataView.CurrentChanged += delegate
+                {
+                    //stores the current selected person
+                    SelectedItem = (Technicien)myDataView.CurrentItem;
+                };
+                
                 return dataTechnicien;
+            }
+        }
+
+        public IList<Materiel> DataMateriel
+        {
+            get
+            {
+
+                dataMateriel = new ObservableCollection<Materiel>(SearchMaterielBase());
+
+                return dataMateriel;
 
             }
         }
@@ -81,6 +104,74 @@ namespace PPE3_Daltons.Employees.Main_technicien
             }
             return ListTechnicien;
 
+        }
+
+        private IList<Materiel> SearchMaterielBase()
+        {
+
+            Materiel matos = new Materiel();
+            matos.modele = "";
+            matos.num_serie = "";
+
+            IList<Materiel> ListeMatos = null;
+            using (API_Daltons.Service1Client api = new API_Daltons.Service1Client())
+            {
+                {
+                    ListeMatos = api.SearchMateriel();
+                }
+            }
+            return ListeMatos;
+
+        }
+
+        private void AddTechnicienBase()
+        {
+            Technicien Techniciens = new Technicien();
+
+            int id_Technicien = 0;
+            Techniciens.nom = nom;
+            Techniciens.prenom = prenom;
+            Techniciens.tel = tel;
+            Techniciens.id_materiel = id_Materiel;
+
+            using (API_Daltons.Service1Client api = new API_Daltons.Service1Client())
+            {
+                id_Technicien = api.AddTechnicien(Techniciens);
+            }
+            if (id_Technicien > 0)
+            {
+                nom = "";
+                prenom = "";
+                tel = "";
+              //  id_materiel;
+
+
+                RaisePropertyChanged("Nom");
+                RaisePropertyChanged("Prenom");
+                RaisePropertyChanged("Tel");
+                RaisePropertyChanged("Id_materiel");
+                
+            }
+            RaisePropertyChanged("DataTechnicien");
+        }
+
+        private void DeleteTechnicienBase()
+        {
+            using (API_Daltons.Service1Client api = new API_Daltons.Service1Client())
+            {
+                api.DeleteTechnicien(SelectedItem);
+                RaisePropertyChanged("DataTechnicien");
+            }
+
+        }
+
+        private void UpdateTechnicienBase()
+        {
+            using (API_Daltons.Service1Client api = new API_Daltons.Service1Client())
+            {
+                api.UPDTechnicien(SelectedItem);
+                RaisePropertyChanged("DataTechnicien");
+            }
         }
 
 
@@ -134,6 +225,7 @@ namespace PPE3_Daltons.Employees.Main_technicien
                     return;
                 }
                 this.selectedItem = value;
+                OnPropertyChanged("SelectedItem");
             }
         }
 
@@ -181,6 +273,40 @@ namespace PPE3_Daltons.Employees.Main_technicien
             get
             {
                 return this.tel;
+            }
+
+            set
+            {
+                if (this.tel == value)
+                {
+                    return;
+                }
+                this.tel = value;
+            }
+        }
+
+        public string Modele
+        {
+            get
+            {
+                return this.modele;
+            }
+
+            set
+            {
+                if (this.modele == value)
+                {
+                    return;
+                }
+                this.modele = value;
+            }
+        }
+
+        public string Num_Serie
+        {
+            get
+            {
+                return this.num_serie;
             }
 
             set
@@ -260,72 +386,45 @@ namespace PPE3_Daltons.Employees.Main_technicien
                 this.interventionTechnicienViewModel = value;
             }
         }
-
-        public ICommand ChangePageCommand
+        public ICommand DeleteTechnicien
         {
             get
             {
-                if (changePageCommand == null)
+                if (deleteTechnicien == null)
                 {
-                    changePageCommand = new RelayCommand(
-                        p => ChangeViewModel((IPageViewModel)p),
-                        p => p is IPageViewModel);
+                    deleteTechnicien = new RelayCommand(
+                        p => DeleteTechnicienBase());
                 }
 
-                return changePageCommand;
+                return deleteTechnicien;
             }
         }
-
-        public List<IPageViewModel> PageViewModels
+        public ICommand UpdateTechnicien
         {
             get
             {
-                if (pageViewModels == null)
-                    pageViewModels = new List<IPageViewModel>();
-
-                return pageViewModels;
-            }
-        }
-
-        public IPageViewModel CurrentPageViewModel
-        {
-            get
-            {
-                return currentPageViewModel;
-            }
-            set
-            {
-                if (currentPageViewModel != value)
+                if (updateTechnicien == null)
                 {
-                    currentPageViewModel = value;
-                    OnPropertyChanged("CurrentPageViewModel");
+                    updateTechnicien = new RelayCommand(
+                        p => UpdateTechnicienBase());
                 }
+
+                return updateTechnicien;
             }
         }
 
-        public IPageViewModel CompteRenduIntervention
+        public ICommand AddTechnicien
         {
             get
             {
-                return PageViewModels[0];
+                if (addTechnicien == null)
+                {
+                    addTechnicien = new RelayCommand(
+                        p => AddTechnicienBase());
+                }
+
+                return addTechnicien;
             }
-        }
-
-        public IPageViewModel InterventionTechnicien
-        {
-            get
-            {
-                return PageViewModels[1];
-            }
-        }
-
-        private void ChangeViewModel(IPageViewModel viewModel)
-        {
-            if (!PageViewModels.Contains(viewModel))
-                PageViewModels.Add(viewModel);
-
-            CurrentPageViewModel = PageViewModels
-                .FirstOrDefault(vm => vm == viewModel);
         }
     }
 }

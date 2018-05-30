@@ -11,8 +11,6 @@ using PPE3_Daltons.Employees.Intervention_technicien;
 using PPE3_Daltons.Employees.Main_technicien;
 using PPE3_Daltons.Assets;
 using System.Windows.Input;
-using PPE3_Daltons.Accueil.Main_Accueil;
-using PPE3_Daltons.Accueil;
 using PPE3_Daltons.Helper_Classes;
 using Prism.Commands;
 
@@ -33,9 +31,8 @@ namespace PPE3_Daltons
         {
 
             // Add available pages
-            PageViewModels.Add(new MainAccueilViewModel());
-            PageViewModels.Add(new MainTechnicienViewModel());
             PageViewModels.Add(new MainSocieteViewModel());
+            PageViewModels.Add(new MainTechnicienViewModel());
             PageViewModels.Add(new CompteRenduSocieteViewModel());
             PageViewModels.Add(new InterventionSocieteViewModel());
             PageViewModels.Add(new CompteRenduTechnicienViewModel());
@@ -48,7 +45,7 @@ namespace PPE3_Daltons
         #region Properties / Commands
 
         public ICommand ChangePageCommand
-        {
+        { 
             get
             {
                 if (changePageCommand == null)
@@ -93,7 +90,7 @@ namespace PPE3_Daltons
 
         #region Methods
 
-        public IPageViewModel MainAccueil
+        public IPageViewModel MainSociete
         {
             get
             {
@@ -108,8 +105,8 @@ namespace PPE3_Daltons
                 return PageViewModels[1];
             }
         }
-        
-        public IPageViewModel MainSociete
+
+        public IPageViewModel CompteRenduSociete
         {
             get
             {
@@ -117,7 +114,7 @@ namespace PPE3_Daltons
             }
         }
 
-        public IPageViewModel CompteRenduSociete
+        public IPageViewModel InterventionSociete
         {
             get
             {
@@ -125,7 +122,7 @@ namespace PPE3_Daltons
             }
         }
 
-        public IPageViewModel InterventionSociete
+        public IPageViewModel CompteRenduIntervention
         {
             get
             {
@@ -133,19 +130,11 @@ namespace PPE3_Daltons
             }
         }
 
-        public IPageViewModel CompteRenduIntervention
-        {
-            get
-            {
-                return PageViewModels[5];
-            }
-        }
-
         public IPageViewModel InterventionTechnicien
         {
             get
             {
-                return PageViewModels[6];
+                return PageViewModels[5];
             }
         }
 

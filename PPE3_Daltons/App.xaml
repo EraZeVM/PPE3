@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:PPE3_Daltons"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary Source="Assets/TelerikStyles.xaml"/>
     </Application.Resources>
 </Application>
